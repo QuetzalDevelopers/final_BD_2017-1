@@ -24,4 +24,4 @@ to qn_proy_admin;
 grant create session
 to qn_proy_user;
 
---commit;
+commit;
