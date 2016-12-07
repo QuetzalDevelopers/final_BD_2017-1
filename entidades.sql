@@ -88,3 +88,80 @@ create table editor(
   constraint editor_pk primary key (empleado_id),
   constraint editor_empleado_fk foreign key (empleado_id) references empleado(empleado_id)
 );
+
+create table revisor(
+  empleado_id     number(10, 0) not null,
+  numero_contrato number(4, 0)  not null,
+  fin_contrato    number(4, 0)  not null,
+
+  constraint revisor_pk primary key (empleado_id),
+  constraint revisor_empleado_fk foreign key (empleado_id) references empleado(empleado_id)
+);
+
+create table articulo(
+  articulo_id         number(10, 0) not null,
+  folio               number(18, 0) not null,
+  titulo              varchar2(10)  not null,
+  sinopsis            varchar2(50)  not null,
+  fecha_estado        date          not null,
+  area_interes_id     number(10, 0) not null,
+  estado_articulo_id  number(10, 0) not null,
+  editor_id           number(10, 0) null,
+
+  constraint articulo_pk primary key (articulo_id),
+  constraint articulo_area_interes_fk foreign key (area_interes_id) references area_interes(area_interes_id),
+  constraint articulo_estado_articulo_fk foreign key (estado_articulo_id) references estado_articulo(estado_articulo_id),
+  constraint articulo_editor_fk foreign key (editor_id) references editor(empleado_id)
+);
+
+create table autor_articulo(
+  autor_articulo_id number(10, 0) not null,
+  autor_id          number(10, 0) not null,
+  articulo_id       number(10, 0) not null,
+
+  constraint autor_articulo_pk primary key (autor_articulo_id),
+  constraint autor_articulo_autor_fk foreign key (autor_id) references autor(autor_id),
+  constraint autor_articulo_articulo_fk foreign key (articulo_id) references articulo(articulo_id)
+);
+
+create table historial_estado_articulo(
+  historial_estado_articulo_id  number(10, 0) not null,
+  fecha_estado                  date          not null,
+  articulo_id                   number(10, 0) not null,
+  estado_articulo_id            number(10, 0) not null,
+
+  constraint historial_estado_articulo_pk primary key (historial_estado_articulo_id),
+  constraint historial_estado_articulo_articulo_fk foreign key (articulo_id) references articulo(articulo_id),
+  constraint historial_estado_articulo_estado_articulo_fk foreign key (estado_articulo_id) references estado_articulo(estado_articulo_id)
+);
+
+create table pdf(
+  articulo_id number(10, 0)   not null,
+  clave       varchar2(2)     not null,
+  archivo     varbinary(1000) not null,
+
+  constraint pdf_pk primary key (articulo_id, clave),
+  constraint odf_articulo_fk foreign key (articulo_id) references articulo(articulo_id)
+);
+
+create table publicacion_articulo(
+  publicacion_articulo_id number(10, 0) not null,
+  numero_pagina           number(5, 0)  not null,
+  publicacion_id          number(10, 0) not null,
+  articulo_id             number(10, 0) not null,
+
+  constraint publicacion_articulo_pk primary key (publicacion_articulo_id),
+  constraint publicacion_articulo_publicacion_fk foreign key (publicacion_id) references publicacion(publiccion_id),
+  constraint publicacion_articulo_articulo_fk foreign key (articulo_id) references articulo(articulo_id)
+);
+
+create table revisor_area(
+  revisor_area_id   number(10, 0) not null,
+  anios_experiencia number(3, 0)  not null,
+  area_interes_id   number(10, 0) not null,
+  revisor_id        number(10, 0) not null,
+
+  constraint revisor_area_pk primary key (revisor_area_id),
+  constraint revisor_area_area_interes_fk foreign key (area_interes_id) references area_interes(area_interes_id),
+  constraint revisor_area_revisor_fk foreign key (revisor_id) references revisor(empleado_id)
+);
