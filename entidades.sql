@@ -1,3 +1,7 @@
+--Autores:
+--Quezada Ferreira Fernando
+--Novas Santamaría José Manuel
+
 connect qn_proy_admin/admin123
 
 create table publicacion(
@@ -77,6 +81,8 @@ create table empleado(
   apellido_materno  varchar2(10)  not null,
   email             varchar2(10)  not null,
   fecha_registro    date          not null,
+  es_editor         boolean       not null,
+  es_revisor        boolean       not null,
 
   constraint empleado_pk primary key (empleado_id)
 );
