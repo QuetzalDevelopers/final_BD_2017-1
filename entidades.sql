@@ -5,9 +5,10 @@ create table publicacion(
   titulo_principal      varchar2(10)  not null,
   fecha_publicacion     date          not null,
   numero_bimestre       number(2, 0)  not null,
-  anio_publicacion      number(4, 0)  not null,
   ejemplares_generados  number(7, 0)  not null,
   ejemplares_vendidos   number(7, 0)  null,
+
+  anio_publicacion as(to_number(to_char(fecha_publicacion, 'YYYY'))) virtual,
 
   constraint publicacion_pk primary key (publicacion_id)
 );
@@ -55,7 +56,7 @@ create table autor(
 
 create table area_interes(
   area_interes_id number(10, 0) not null,
-  clave           varchar2(5)   not null,
+  clave           varchar2(2)   not null,
   descripcion     varchar2(30)  not null,
 
   constraint area_interes_pk primary key (area_interes_id)
