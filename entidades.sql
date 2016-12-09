@@ -63,7 +63,8 @@ create table area_interes(
   clave           varchar2(2)   not null,
   descripcion     varchar2(30)  not null,
 
-  constraint area_interes_pk primary key (area_interes_id)
+  constraint area_interes_pk primary key (area_interes_id),
+  constraint area_interes_clave_uni unique (clave)
 );
 
 create table estado_articulo(
@@ -71,7 +72,8 @@ create table estado_articulo(
   clave               varchar2(5)   not null,
   descripcion         varchar2(30)  not null,
 
-  constraint estado_articulo_pk primary key (estado_articulo_id)
+  constraint estado_articulo_pk primary key (estado_articulo_id),
+  constraint estado_articulo_clave_uni unique (clave)
 );
 
 create table empleado(
@@ -93,7 +95,9 @@ create table editor(
   nombre_maestria_doctorado varchar2(10)  not null,
 
   constraint editor_pk primary key (empleado_id),
-  constraint editor_empleado_fk foreign key (empleado_id) references empleado(empleado_id)
+  constraint editor_empleado_fk foreign key (empleado_id) references empleado(empleado_id),
+  --Propuesta de constraint unique
+  constraint editor_cedula_uni unique (cedula)
 );
 
 create table revisor(
@@ -102,7 +106,9 @@ create table revisor(
   fin_contrato    number(4, 0)  not null,
 
   constraint revisor_pk primary key (empleado_id),
-  constraint revisor_empleado_fk foreign key (empleado_id) references empleado(empleado_id)
+  constraint revisor_empleado_fk foreign key (empleado_id) references empleado(empleado_id),
+  --propuesta de constraint unique
+  constraint revisor_numero_contrato unique (numero_contrato)
 );
 
 create table articulo(
@@ -118,7 +124,8 @@ create table articulo(
   constraint articulo_pk primary key (articulo_id),
   constraint articulo_area_interes_fk foreign key (area_interes_id) references area_interes(area_interes_id),
   constraint articulo_estado_articulo_fk foreign key (estado_articulo_id) references estado_articulo(estado_articulo_id),
-  constraint articulo_editor_fk foreign key (editor_id) references editor(empleado_id)
+  constraint articulo_editor_fk foreign key (editor_id) references editor(empleado_id),
+  constraint articulo_folio_uni unique (folio)
 );
 
 create table autor_articulo(
@@ -148,7 +155,8 @@ create table pdf(
   archivo     varbinary(1000) not null,
 
   constraint pdf_pk primary key (articulo_id, clave),
-  constraint odf_articulo_fk foreign key (articulo_id) references articulo(articulo_id)
+  constraint pdf_articulo_fk foreign key (articulo_id) references articulo(articulo_id),
+  constraint pdf_clave_uni unique (clave)
 );
 
 create table publicacion_articulo(
