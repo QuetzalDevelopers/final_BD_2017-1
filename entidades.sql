@@ -81,7 +81,7 @@ create table empleado(
   nombre            varchar2(20)  not null,
   apellido_paterno  varchar2(10)  not null,
   apellido_materno  varchar2(10)  not null,
-  email             varchar2(10)  not null,
+  email             varchar2(10)  null,
   fecha_registro    date          not null,
   es_editor         boolean       not null,
   es_revisor        boolean       not null,
@@ -103,7 +103,7 @@ create table editor(
 create table revisor(
   empleado_id     number(10, 0) not null,
   numero_contrato number(4, 0)  not null,
-  fin_contrato    number(4, 0)  not null,
+  fin_contrato    date          not null,
 
   constraint revisor_pk primary key (empleado_id),
   constraint revisor_empleado_fk foreign key (empleado_id) references empleado(empleado_id),
@@ -113,12 +113,12 @@ create table revisor(
 
 create table articulo(
   articulo_id         number(10, 0) not null,
-  folio               number(18, 0) not null,
+  folio               number(18, 0) null,
   titulo              varchar2(10)  not null,
   sinopsis            varchar2(50)  not null,
-  fecha_estado        date          not null,
+  fecha_estado        date          null,
   area_interes_id     number(10, 0) not null,
-  estado_articulo_id  number(10, 0) not null,
+  estado_articulo_id  number(10, 0) null,
   editor_id           number(10, 0) null,
 
   constraint articulo_pk primary key (articulo_id),

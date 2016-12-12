@@ -51,3 +51,9 @@ create sequence seq_publicacion_articulo
 create sequence seq_revisor_area
   start with 1
   increment by 1;
+
+create sequence seq_numero_folio
+  start with 1
+  increment by 1
+  maxvalue 999999999999999999
+  cycle;
