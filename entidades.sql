@@ -180,3 +180,14 @@ create table revisor_area(
   constraint revisor_area_area_interes_fk foreign key (area_interes_id) references area_interes(area_interes_id),
   constraint revisor_area_revisor_fk foreign key (revisor_id) references revisor(empleado_id)
 );
+
+create table revision(
+  revision_id   number(10, 0) not null,
+  calificacion  number(4, 2)  not null,
+  articulo_id   number(10, 0) not null,
+  revisor_id    number(10, 0) not null,
+
+  constraint revision_pk primary key (revision_id),
+  constraint revision_articulo_fk foreign key (articulo_id) references articulo(articulo_id),
+  constraint revision_revisor_fk foreign key (revisor_id) references revisor(empleado_id)
+);
