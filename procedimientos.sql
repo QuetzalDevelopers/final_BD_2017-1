@@ -7,7 +7,7 @@ connect qn_proy_admin/admin123
 create or replace procedure confirma_publicacion
   begin
     dbms_output.put_line('Ingresa el titulo de la publicacion que desea confirmar y su respectivo estado: ');
-    if lower(&&estado) = 'rechazado' or lower(&&estado) = 'programado'
+    if lower(&&estado) = 'rechazado' or lower(&estado) = 'programado'
       update articulo
         set estado_articulo_id = (
           select estado_articulo_id from estado_articulo where lower(clave) = lower(&estado)

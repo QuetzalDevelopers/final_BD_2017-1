@@ -8,11 +8,11 @@ create table publicacion(
   publicacion_id        number(10, 0) not null,
   titulo_principal      varchar2(10)  not null,
   fecha_publicacion     date          not null,
-  numero_bimestre       number(2, 0)  not null,
   ejemplares_generados  number(7, 0)  not null,
   ejemplares_vendidos   number(7, 0)  null,
 
   anio_publicacion as(to_number(to_char(fecha_publicacion, 'YYYY'))) virtual,
+  numero_bimestre as(round(to_number(to_char(fecha_publicacion, 'MM')) / 6)) virtual,
 
   constraint publicacion_pk primary key (publicacion_id)
 );
