@@ -19,18 +19,18 @@ create table publicacion(
 
 create table suscriptor(
   suscriptor_id     number(10, 0) not null,
-  nombre            varchar2(20)  not null,
-  apellido_paterno  varchar2(10)  not null,
-  apellido_materno  varchar2(10)  null,
-  email             varchar2(10)  not null,
+  nombre            varchar2(40)  not null,
+  apellido_paterno  varchar2(20)  not null,
+  apellido_materno  varchar2(20)  null,
+  email             varchar2(30)  not null,
   fecha_suscripcion date          not null,
   duracion_vigencia number(2, 0)  not null,
-  calle             varchar2(10)  not null,
-  numero            varchar2(2)   not null,
-  colonia           varchar2(10)  not null,
+  calle             varchar2(20)  not null,
+  numero            varchar2(3)   not null,
+  colonia           varchar2(20)  not null,
   codigo_postal     varchar2(5)   not null,
-  municipio         varchar2(10)  not null,
-  estado            varchar2(10)  not null,
+  municipio         varchar2(20)  not null,
+  estado            varchar2(20)  not null,
 
   constraint suscriptor_pk primary key (suscriptor_id)
 );
@@ -48,11 +48,11 @@ create table peticion(
 
 create table autor(
   autor_id          number(10, 0) not null,
-  nombre            varchar2(20)  not null,
-  apellido_paterno  varchar2(10)  not null,
-  apellido_materno  varchar2(10)  not null,
-  ocupacion         varchar2(10)  not null,
-  email             varchar2(10)  not null,
+  nombre            varchar2(40)  not null,
+  apellido_paterno  varchar2(20)  not null,
+  apellido_materno  varchar2(20)  null,
+  ocupacion         varchar2(30)  not null,
+  email             varchar2(30)  not null,
   empresa_escuela   varchar2(20)  not null,
 
   constraint autor_pk primary key (autor_id)
@@ -69,8 +69,8 @@ create table area_interes(
 
 create table estado_articulo(
   estado_articulo_id  number(10, 0) not null,
-  clave               varchar2(5)   not null,
-  descripcion         varchar2(30)  not null,
+  clave               varchar2(10)  not null,
+  descripcion         varchar2(30)  null,
 
   constraint estado_articulo_pk primary key (estado_articulo_id),
   constraint estado_articulo_clave_uni unique (clave)
@@ -78,10 +78,10 @@ create table estado_articulo(
 
 create table empleado(
   empleado_id       number(10, 0) not null,
-  nombre            varchar2(20)  not null,
-  apellido_paterno  varchar2(10)  not null,
-  apellido_materno  varchar2(10)  not null,
-  email             varchar2(10)  null,
+  nombre            varchar2(40)  not null,
+  apellido_paterno  varchar2(20)  not null,
+  apellido_materno  varchar2(20)  null,
+  email             varchar2(30)  null,
   fecha_registro    date          not null,
   es_editor         boolean       not null,
   es_revisor        boolean       not null,
@@ -92,7 +92,7 @@ create table empleado(
 create table editor(
   empleado_id               number(10, 0) not null,
   cedula                    number(10, 0) not null,
-  nombre_maestria_doctorado varchar2(10)  not null,
+  nombre_maestria_doctorado varchar2(20)  not null,
 
   constraint editor_pk primary key (empleado_id),
   constraint editor_empleado_fk foreign key (empleado_id) references empleado(empleado_id),
@@ -115,7 +115,7 @@ create table articulo(
   articulo_id         number(10, 0) not null,
   folio               number(18, 0) null,
   titulo              varchar2(30)  not null,
-  sinopsis            varchar2(50)  not null,
+  sinopsis            varchar2(100) not null,
   fecha_estado        date          null,
   area_interes_id     number(10, 0) not null,
   estado_articulo_id  number(10, 0) null,
