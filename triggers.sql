@@ -9,10 +9,10 @@ create or replace trigger respuesta_articulo
 after insert of (articulo_id, titulo, sinopsis, area_interes_id) on articulo
 for each row
 declare
-  v_articulo_id number(10, 0);
-  v_titulo varchar2(10);
-  v_numero_folio number(18, 0);
-  v_fecha_estado date;
+  v_articulo_id articulo.articulo_id%TYPE;
+  v_titulo articulo.titulo%TYPE;
+  v_numero_folio articulo.folio%TYPE;
+  v_fecha_estado articulo.fecha_estado%TYPE;
 begin
   --Asignando valores a las varables
   v_articulo_id := :new.articulo_id;
@@ -36,10 +36,10 @@ create or replace trigger registra_tipo_empleado
 after insert of (empleado_id, nombre, apellido_paterno, apellido_materno, fecha_registro, es_editor, es_revisor) on empleado
 for each row
 declare
-  v_empleado_id number(10, 0);
-  v_nombre varchar2(10);
-  v_es_editor boolean;
-  v_es_revisor boolean;
+  v_empleado_id empleado.empleado_id%TYPE;
+  v_nombre empleado.nombre%TYPE;
+  v_es_editor empleado.es_editor%TYPE;
+  v_es_revisor empleado.es_revisor%TYPE;
 begin
   v_empleado_id := :new.empleado_id;
   v_nombre := :new.nombre;

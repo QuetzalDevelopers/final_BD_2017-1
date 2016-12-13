@@ -6,7 +6,7 @@ connect qn_proy_admin/admin123
 
 create table publicacion(
   publicacion_id        number(10, 0) not null,
-  titulo_principal      varchar2(10)  not null,
+  titulo_principal      varchar2(30)  not null,
   fecha_publicacion     date          not null,
   ejemplares_generados  number(7, 0)  not null,
   ejemplares_vendidos   number(7, 0)  null,
@@ -114,7 +114,7 @@ create table revisor(
 create table articulo(
   articulo_id         number(10, 0) not null,
   folio               number(18, 0) null,
-  titulo              varchar2(10)  not null,
+  titulo              varchar2(30)  not null,
   sinopsis            varchar2(50)  not null,
   fecha_estado        date          null,
   area_interes_id     number(10, 0) not null,
