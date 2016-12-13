@@ -12,6 +12,8 @@ insert into publicacion (publicacion_id, titulo_principal, fecha_publicacion, ej
 insert into suscriptor (suscriptor_id, nombre, apellido_paterno, apellido_materno, email, fecha_suscripcion, duracion_vigencia, calle, numero, colonia, codigo_postal, municipio, estado) values(seq_suscriptor.nextval, 'AXEL', 'RODRIGUEZ', 'ESTRADA', 'tmw@gmail.com', sysdate, 12, 'CALLE DRAGON', '20', 'PADIERNA', '14235', 'TLALPAN', 'CDMX');
 insert into suscriptor (suscriptor_id, nombre, apellido_paterno, apellido_materno, email, fecha_suscripcion, duracion_vigencia, calle, numero, colonia, codigo_postal, municipio, estado) values(seq_suscriptor.nextval, 'MONICA', 'RAMIREZ', 'CIENFUEGOS', 'lbdb@gmail.com', sysdate, 11, 'MATAMOROS', '34', 'LA PLATA', '14225', 'PACHUCA', 'HIDALGO');
 
+insert into peticion
+
 insert into autor (autor_id, nombre, apellido_paterno, ocupacion, email, empresa_escuela) values(seq_autor.nextval, 'MARIO', 'PLATTINI', 'ADMINISTRADOR DE BASES', 'el_plattini@gmail.com');
 insert into autor (autor_id, nombre, apellido_paterno, ocupacion, email, empresa_escuela) values(seq_autor.nextval, 'RAJKUMAR', 'BUYYA', 'ARQUITECTO DE SOFTWARE', 'pro_software@gmail.com');
 insert into autor (autor_id, nombre, apellido_paterno, ocupacion, email, empresa_escuela) values(seq_autor.nextval, 'MARK ELLIOT', 'ZUCKERBERG', 'DESARROLLADOR', 'face_developer@gmail.com');
