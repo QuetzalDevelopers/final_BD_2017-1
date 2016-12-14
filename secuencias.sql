@@ -52,6 +52,10 @@ create sequence seq_revisor_area
   start with 1
   increment by 1;
 
+create sequence seq_revision
+  start with 1
+  increment by 1;
+
 create sequence seq_numero_folio
   start with 1
   increment by 1

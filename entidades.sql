@@ -125,7 +125,6 @@ create table articulo(
   constraint articulo_area_interes_fk foreign key (area_interes_id) references area_interes(area_interes_id),
   constraint articulo_estado_articulo_fk foreign key (estado_articulo_id) references estado_articulo(estado_articulo_id),
   constraint articulo_editor_fk foreign key (editor_id) references editor(empleado_id),
-  constraint articulo_titulo_uni unique (titulo),
   constraint articulo_folio_uni unique (folio)
 );
 

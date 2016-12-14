@@ -101,7 +101,7 @@ create or replace trigger actualiza_estado
   end;
 
 create or replace trigger publica_articulo
-  after insert of (numero_pagina) on publicacion_articulo
+  after insert or update of (numero_pagina) on publicacion_articulo
   for each row
   declare
     v_articulo_id publicacion_articulo.articulo_id%TYPE;
