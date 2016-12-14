@@ -9,3 +9,5 @@ create or replace public synonym PUBLI for publicacion;
 create or replace public synonym ART for articulo;
 
 create or replace public synonym PORTABLE for pdf;
+
+commit;

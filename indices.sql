@@ -13,3 +13,5 @@ create unique index idx_autor_nombre_completo on autor(apellido_paterno, apellid
 create unique index idx_empleado_nombre_completo on empleado(apellido_paterno, apellido_materno, nombre);
 
 create unique index idx_articulo_titulo on articulo(titulo);
+
+commit;

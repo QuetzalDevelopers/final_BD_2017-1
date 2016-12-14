@@ -36,3 +36,15 @@ create or replace procedure confirma_publicacion(a_editor_id in editor.empleado_
       dbms_output.put_line('No encontramos su id en el registro de editores :(');
     end if;  
   end;
+
+create or replace procedure agrega_revisor(a_empleado_id in empleado.empleado_id%TYPE)
+  begin
+    insert into revisor (empleado_id, numero_contrato, fin_contrato)
+    values (v_empleado_id, to_number(&numero_contrato), to_date(&fin_contrato, "DD/MM/YYYY"));
+  end;
+
+create or replace procedure agrega_editor(a_empleado_id in empleado.empleado_id%TYPE)
+  begin
+    insert into editor (empleado_id, numero_contrato, fin_contrato)
+    values (v_empleado_id, to_number(&cedula), &nombre_maestria_o_doctorado);
+  end;

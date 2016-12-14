@@ -33,7 +33,7 @@ begin
 end;
 
 create or replace trigger registra_tipo_empleado
-after insert of (empleado_id, nombre, apellido_paterno, apellido_materno, fecha_registro, es_editor, es_revisor) on empleado
+after insert of (empleado_id, nombre, apellido_paterno, fecha_registro, es_editor, es_revisor) on empleado
 for each row
 declare
   v_empleado_id empleado.empleado_id%TYPE;
@@ -44,17 +44,12 @@ begin
   v_empleado_id := :new.empleado_id;
   v_nombre := :new.nombre;
 
-  if v_es_revisor and not v_es_editor then
+  if v_es_revisor = 1 and v_es_editor = 0 then
     dbms_output.put_line('Proporcione los datos del revisor ' || v_nombre);
-
-    insert into revisor (empleado_id, numero_contrato, fin_contrato)
-    values (v_empleado_id, to_number(&numero_contrato), to_date(&fin_contrato, "DD/MM/YYYY"));
-
-  else if v_es_editor and not v_es_revisor then
+    agrega_revisor(v_empleado_id);
+  else if v_es_editor = 1 and v_es_revisor = 0 then
     dbms_output.put_line('Proporcione los datos del editor ' || v_nombre);
-
-    insert into editor (empleado_id, numero_contrato, fin_contrato)
-    values (v_empleado_id, to_number(&cedula), &nombre_maestria_o_doctorado);
+    agrega_editor(v_empleado_id);
   end if;
 end;
 
@@ -126,12 +121,10 @@ create or replace trigger actualiza_empleado
     v_es_revisor := :new.es_revisor;
     v_contador := select count(*) from articulo where editor_id = v_empleado_id;
 
-    if v_es_editor and v_es_revisor then
+    if v_es_editor = 1 and v_es_revisor = 1 then
       if v_contador >= 3 then
         dbms_output.put_line('Proporcione los datos del revisor ' || v_nombre);
-
-        insert into revisor (empleado_id, numero_contrato, fin_contrato)
-        values (v_empleado_id, to_number(&numero_contrato), to_date(&fin_contrato, "DD/MM/YYYY"));
+        agrega_editor(v_empleado_id);
       else
         dbms_output.put_line(v_nombre || 'No puede actuar como revisor porque ha evaluado ' || v_contador ||' articulos');
         update empleado set v_es_revisor = false where empleado_id = v_empleado_id;
