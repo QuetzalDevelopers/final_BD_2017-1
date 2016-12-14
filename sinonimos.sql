@@ -4,10 +4,8 @@
 
 connect qn_proy_admin/admin123
 
-create or replace public synonym PUBLI for publicacion;
+create or replace public synonym PUBLI for v_publicacion;
 
-create or replace public synonym ART for articulo;
+create or replace public synonym ART for v_articulo;
 
 create or replace public synonym PORTABLE for pdf;
-
-commit;

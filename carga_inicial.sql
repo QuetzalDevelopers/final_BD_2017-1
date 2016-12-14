@@ -35,9 +35,9 @@ insert into estado_articulo (estado_articulo_id, clave) values (seq_estado_artic
 insert into estado_articulo (estado_articulo_id, clave) values (seq_estado_articulo.nextval, 'PROGRAMADO');
 insert into estado_articulo (estado_articulo_id, clave) values (seq_estado_articulo.nextval, 'PUBLICADO');
 
-insert into empleado (empleado_id, nombre, apellido_paterno, fecha_registro, es_editor, es_revisor) values (seq_empleado.nextval, "NATASHA", "ROMANOFF", sysdate, false, false);
-insert into empleado (empleado_id, nombre, apellido_paterno, apellido_materno, fecha_registro, es_editor, es_revisor) values (seq_empleado.nextval, "ERICK", "ROMERO", "ZEPEDA", sysdate, true, false);
-insert into empleado (empleado_id, nombre, apellido_paterno, apellido_materno, fecha_registro, es_editor, es_revisor) values (seq_empleado.nextval, "LILIANA", "CASTILLO", "ZURITA", sysdate, false, true);
+insert into empleado (empleado_id, nombre, apellido_paterno, fecha_registro, es_editor, es_revisor) values (seq_empleado.nextval, 'NATASHA', 'ROMANOFF', sysdate, 0, 0);
+insert into empleado (empleado_id, nombre, apellido_paterno, apellido_materno, fecha_registro, es_editor, es_revisor) values (seq_empleado.nextval, 'ERICK', 'ROMERO', 'ZEPEDA', sysdate, 1, 0);
+insert into empleado (empleado_id, nombre, apellido_paterno, apellido_materno, fecha_registro, es_editor, es_revisor) values (seq_empleado.nextval, 'LILIANA', 'CASTILLO', 'ZURITA', sysdate, 0, 1);
 
 insert into articulo (articulo_id, titulo, sinopsis, area_interes_id) values(seq_articulo.nextval, 'PROS Y CONTRAS DE SQLPLUS', 'LAS VENTAJAS Y DESVENTAAS DEL USO DEL MANEJADOR DE BASES DE DATOS SQLPLUS', 1);
 insert into articulo (articulo_id, titulo, sinopsis, area_interes_id) values(seq_articulo.nextval, 'INTRODUCCION', 'UNA INTRODUCCION A LA PROGRAMACION DE PROCESOS PARALELOS', 2);

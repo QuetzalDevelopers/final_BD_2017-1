@@ -61,3 +61,9 @@ create sequence seq_numero_folio
   increment by 1
   maxvalue 999999999999999999
   cycle;
+
+create sequence seq_numero_contrato
+  start with 1
+  increment by 1
+  maxvalue 9999999999
+  cycle;

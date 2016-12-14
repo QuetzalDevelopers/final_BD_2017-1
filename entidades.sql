@@ -56,7 +56,7 @@ create table autor(
 create table area_interes(
   area_interes_id number(10, 0) not null,
   clave           varchar2(2)   not null,
-  descripcion     varchar2(30)  not null,
+  descripcion     varchar2(50)  not null,
   constraint area_interes_pk primary key (area_interes_id),
   constraint area_interes_clave_uni unique (clave)
 );
@@ -78,7 +78,9 @@ create table empleado(
   fecha_registro    date          not null,
   es_editor         int           not null,
   es_revisor        int           not null,
-  constraint empleado_pk primary key (empleado_id)
+  constraint empleado_pk primary key (empleado_id),
+  constraint empleado_es_ed_ch check (es_editor = 1 or es_editor = 0),
+  constraint empleado_es_re_ch check (es_revisor = 1 or es_revisor = 0)
 );
 
 create table editor(
@@ -92,11 +94,10 @@ create table editor(
 
 create table revisor(
   empleado_id     number(10, 0) not null,
-  numero_contrato number(4, 0)  not null,
+  numero_contrato number(10, 0)  not null,
   fin_contrato    date          not null,
   constraint revisor_pk primary key (empleado_id),
-  constraint revisor_empleado_fk foreign key (empleado_id) references empleado(empleado_id),
-  constraint revisor_numero_contrato unique (numero_contrato)
+  constraint revisor_empleado_fk foreign key (empleado_id) references empleado(empleado_id)
 );
 
 create table articulo(
@@ -172,5 +173,3 @@ create table revision(
   constraint revision_articulo_fk foreign key (articulo_id) references articulo(articulo_id),
   constraint revision_revisor_fk foreign key (revisor_id) references revisor(empleado_id)
 );
-
-commit;

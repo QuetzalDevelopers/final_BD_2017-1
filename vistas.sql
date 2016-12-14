@@ -20,5 +20,3 @@ where
   pa.articulo_id = a.articulo_id and
   a.articulo_id = aa.articulo_id and
   aa.autor_id = au.autor_id;
-
-commit;
